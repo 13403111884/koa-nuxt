@@ -1,0 +1,16 @@
+{
+  "links": {
+    "home": "首页",
+    "about": "关于",
+    "english": "英文版",
+    "China": "中文版"
+  },
+  "home": {
+    "title": "欢迎",
+    "introduction": "这是中文的简介。"
+  },
+  "about": {
+    "title": "关于",
+    "introduction": "此页面旨在为您提供更多信息。"
+  }
+}
