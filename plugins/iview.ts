@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import {
-  Button
+  Button,
+  Progress
 } from 'view-design'
 
 Vue.use(VueI18n)
 Vue.component('Button', Button)
+Vue.component('Progress', Progress)
 
 export default ({ app, store }: any) => {
   // Set i18n instance on app

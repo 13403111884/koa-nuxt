@@ -14,11 +14,26 @@
 <script>
 import Logo from '~/components/Logo.vue'
 export default {
+  middleware: 'i',
   components: {
     Logo
   },
-  asyncData () {
+  async asyncData () {
+    const a = await new Promise((resolve) => {
+      // eslint-disable-next-line nuxt/no-timing-in-fetch-data
+      setTimeout(() => {
+        resolve({ name: 'world' })
+      }, 3000)
+    })
     // console.log('item', item)
+    return { a }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      setTimeout(() => {
+        // 00
+      }, 2000)
+    })
   },
   methods: {
     postLogin () {
@@ -27,6 +42,8 @@ export default {
       } else {
         this.$i18n.locale = 'zh'
       }
+      // eslint-disable-next-line no-console
+      console.log('client-methods', this)
     }
   },
   head () {

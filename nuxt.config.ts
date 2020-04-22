@@ -19,7 +19,17 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: {
+    color: '#00c58e',
+    failedColor: '#f99595',
+    height: '6px',
+    throttle: 100,
+    duration: 50000,
+    continuous: false,
+    rtl: false,
+    css: true
+  },
+  // loading: '~/components/loading.vue',
   /*
   ** Global CSS
   */
@@ -31,12 +41,13 @@ module.exports = {
   */
   plugins: [
     '@/plugins/iview',
-    '@/plugins/app',
+    '@/plugins/clientApi/index',
     { src: '@/plugins/route', mode: 'client' },
     { src: '@/plugins/route', mode: 'server' }
   ],
   router: {
-    middleware: 'i18n'
+    middleware: 'i18n',
+    base: '/'
   },
   /*
   ** Nuxt.js dev-modules
@@ -52,7 +63,7 @@ module.exports = {
     ['@nuxtjs/axios', { anotherOption: true }],
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    ['@/modules/simple', { token: '123', this: this }]
+    ['~/modules/simple', { token: '123' }]
   ],
   /*
   ** Axios module configuration
@@ -62,13 +73,13 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    '/api/': { target: 'http://api.example.com', pathRewrite: { '^/api/': '' } }
+    '/api/': { target: 'http://127.0.0.1:2001', changeOrigin: true, pathRewrite: { '^/api': '' } }
   },
   /*
   ** Build configuration
   */
   build: {
-    vendor: ['vue-i18n'],
+    vendor: ['vue-i18n', 'axios'],
     /*
     ** You can extend webpack config here
     */
